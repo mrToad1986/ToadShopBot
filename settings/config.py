@@ -1,16 +1,16 @@
 import os
 from emoji import emojize
 
+NAME_DB = 'products.sqlite'
+VERSION = '0.0.1'
+AUTHOR = 'User'
+
 # регистрационный токен
 TOKEN = ''
 # родительская директория
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # путь до БД (в директории /settings)
 DATABASE = os.path.join('sqlite:///' + BASE_DIR, NAME_DB)
-
-NAME_DB = 'products.sqlite'
-VERSION = '0.0.1'
-AUTHOR = 'User'
 
 COUNT = 0
 
@@ -48,4 +48,3 @@ COMMANDS = {
     'START': 'start',
     'HELP': 'help',
 }
-
