@@ -25,7 +25,15 @@ class TelBot:
         self.start()
         self.bot.polling(none_stop=True)
 
+# # эхо для тестирования
+# bot = TeleBot(config.TOKEN)
+#
+# @bot.message_handler(content_types=["text"])
+# def repeat_all_messages(message):
+#     bot.send_message(message.chat.id, message.text)
+
 
 if __name__ == '__main__':
     bot = TelBot()
     bot.run_bot()
+    # bot.infinity_polling()
