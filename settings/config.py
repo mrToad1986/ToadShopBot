@@ -5,7 +5,7 @@ NAME_DB = 'products.sqlite'
 VERSION = '0.0.1'
 AUTHOR = 'User'
 # регистрационный токен
-TOKEN = '5947031195:AAGBN6tF6FnsvIK328Vf35S7L7WVPgeLbp4'
+TOKEN = ''
 # родительская директория
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # путь до БД (в директории /settings)
