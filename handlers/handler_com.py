@@ -9,8 +9,8 @@ class HandlerCommands(Handler):
 
     def pressed_btn_start(self, message):
         self.bot.send_message(message.chat.id,
-                              f'Здравствуйте, {message.from_user.first_name}. '
-                              f'Добро пожаловать в наш магазин!',
+                              f'Здравствуйте, {message.from_user.first_name}.'
+                              f' Добро пожаловать в наш магазин!',
                               reply_markup=self.keyboards.start_menu())
 
     def handle(self):

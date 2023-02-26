@@ -3,7 +3,7 @@ from emoji import emojize
 
 NAME_DB = 'products.sqlite'
 VERSION = '0.0.1'
-AUTHOR = 'User'
+AUTHOR = 'mrToad86'
 # регистрационный токен
 TOKEN = '5947031195:AAGBN6tF6FnsvIK328Vf35S7L7WVPgeLbp4'
 # родительская директория
