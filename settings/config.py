@@ -39,7 +39,7 @@ KEYBOARD = {
 CATEGORY = {
     'SEMIPRODUCT': 1,
     'GROCERY': 2,
-    'ICECREAM': 3,
+    'ICE_CREAM': 3,
 }
 
 # команды
