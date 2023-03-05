@@ -1,9 +1,7 @@
 from sqlalchemy import Column, String, Integer, Float, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
+from data_base.dbcore import Base
 from models.category import Category
-
-Base = declarative_base()
 
 
 class Products(Base):
@@ -28,4 +26,4 @@ class Products(Base):
 
 
 class SaleProduct(Products):
-    pass # товар по акции
+    pass  # товар по акции

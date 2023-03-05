@@ -1,5 +1,6 @@
 # типы телеграм-бота для создания элементов интерфейса
-from telebot.types import KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from telebot.types import KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove, \
+    InlineKeyboardMarkup, InlineKeyboardButton
 # константы и настройки
 from settings import config
 # класс-менеджер для работы с библиотекой
@@ -44,6 +45,25 @@ class Keyboards:
         self.markup.row(itm_btn_1)
         return self.markup
 
+    def set_inline_btn(self, name):
+        '''
+        Создает и возвращает инлайн кнопку (товарная позиция)
+        по входным параметрам
+        '''
+        return InlineKeyboardButton(str(name), callback_data=str(name.id))
+        # где id  - идентификатор товара
+
+    def set_select_category(self, category):
+        '''
+        создает разметку кнопок в выбранной категории товара
+        возвращает разметку
+        '''
+        self.markup = InlineKeyboardMarkup(row_width=1)
+        # загружаем в названия кнопок данные из БД
+        for itm in self.DB.select_all_products_category(category):
+            self.markup.add(self.set_inline_btn(itm))
+        return self.markup
+
     @staticmethod
     def remove_menu():
         '''
@@ -62,4 +82,3 @@ class Keyboards:
         self.markup.add(self.set_btn('ICE_CREAM'))
         self.markup.row(self.set_btn('<<'), self.set_btn('ORDER'))
         return self.markup
-
