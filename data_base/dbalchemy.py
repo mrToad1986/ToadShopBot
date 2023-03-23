@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 # создание сессии, через сессии ORM-библиотека SQLAlchemy взаимодействует с БД
 from sqlalchemy.orm import sessionmaker
 
-from settings import config
+from settings import config, utility
 from models.product import Products
 from models.order import Order
 from data_base.dbcore import Base
@@ -72,4 +72,91 @@ class DBManager(metaclass=Singleton):
         self._session.commit()
         self.close()
 
-    
+    def select_all_products_id(self):
+        '''
+        :return: все id товара в заказе и конвертирует
+        результат выбрки в список c помощью функции _convert модуля utility
+        '''
+        result = self._session.query(Order.product_id).all()
+        self.close()
+        return utility._convert(result)
+
+    def select_order_quantity(self, product_id):
+        '''
+        :return: количество товара в заказе
+        '''
+        result = self._session.query(Order.quantity).filter_by(
+            product_id=product_id).one()
+        self.close()
+        return result.quantity
+
+    def update_order_value(self, product_id, name, value):
+        '''
+        Обновляет данные указанное позиции заказа
+        в соответствии с номером товара(rownum)
+        '''
+        self._session.query(Order).filter_by(
+            product_id=product_id).update({name: value})
+        self._session.commit()
+        self.close()
+
+    def select_single_product_quantity(self, rownum):
+        '''
+        :param rownum: номер товара, определяется при выборе товара в интерфейсе
+        :return: количество товара на складе
+        '''
+        result = self._session.query(
+            Products.quantity).filter_by(id=rownum).one()
+        self.close()
+        return result.quantity
+
+    def update_product_value(self, rownum, name, value):
+        '''
+        Обновляет количество товара на складе
+        '''
+        self._session.query(Products).filter_by(
+            id=rownum).update({name: value})
+        self._session.commit()
+        self.close()
+
+    def select_single_product_name(self, rownum):
+        '''
+        :return: название товара в соответствии с номером товара
+        '''
+        result = self._session.query(Products.name).filter_by(id=rownum).one()
+        self.close()
+        return result.name
+
+    def select_single_product_title(self, rownum):
+        '''
+        :return: торговую марку товара в соответствии с номером товара
+        '''
+        result = self._session.query(Products.title).filter_by(id=rownum).one()
+        self.close()
+        return result.title
+
+    def select_single_product_price(self, rownum):
+        '''
+        :return: цену товара в соответствии с номером товара
+        '''
+        result = self._session.query(Products.price).filter_by(id=rownum).one()
+        self.close()
+        return result.price
+
+    def count_rows_orders(self):
+        '''
+        :return: количество позиций в заказе
+        '''
+        result = self._session.query(Order).count()
+        self.close()
+        return result
+
+    def select_order_quantity(self, product_id):
+        '''
+        :return: количество товара из заказа
+        в соответствии с номером товара
+        '''
+        result = self._session.query(Order.quantity).filter_by(
+            product_id=product_id).one()
+        self.close()
+        return result.quantity
