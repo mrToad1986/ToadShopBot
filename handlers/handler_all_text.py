@@ -44,6 +44,20 @@ class HandlerAllText(Handler):
         self.bot.send_message(message.chat.id, 'OK',
                               reply_markup=self.keyboards.category_menu())
 
+    def pressed_btn_order(self, message):
+        '''
+        Обрабатывает входящие текстовые сообщения
+        от нажатия на кнопку "Заказ"
+        '''
+        # обнуляем шаг
+        self.step = 0
+        # список всех товаров в заказе
+        count = self.DB.select_all_products_id()
+        # количество по каждой позиции товара
+        quantity = self.DB.select_order_quantity(count[self.step])
+        # овтет пользователю
+        self.send_message_order(count[self.step], quantity, message)
+
     # обработчик(декоратор) сообщений,
     # который обрабатывает входящие текстовые сообщения
     # от нажатия кнопок.
@@ -65,3 +79,11 @@ class HandlerAllText(Handler):
                 self.pressed_btn_product(message, 'GROCERY')
             if message.text == config.KEYBOARD['ICE_CREAM']:
                 self.pressed_btn_product(message, 'ICE_CREAM')
+            if message.text == config.KEYBOARD['ORDER']:
+                # если есть заказ
+                if self.DB.count_rows_order() > 0:
+                    self.pressed_btn_order(message)
+                else:
+                    self.bot.send_message(message.chat.id, MESSAGES['no_orders'],
+                                          parse_mode='HTML',
+                                          reply_markup=self.keyboards.category_menu())
