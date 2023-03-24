@@ -83,7 +83,8 @@ class DBManager(metaclass=Singleton):
 
     def select_order_quantity(self, product_id):
         '''
-        :return: количество товара в заказе
+        :return: количество товара из заказа
+        в соответствии с номером товара
         '''
         result = self._session.query(Order.quantity).filter_by(
             product_id=product_id).one()
@@ -151,12 +152,3 @@ class DBManager(metaclass=Singleton):
         self.close()
         return result
 
-    def select_order_quantity(self, product_id):
-        '''
-        :return: количество товара из заказа
-        в соответствии с номером товара
-        '''
-        result = self._session.query(Order.quantity).filter_by(
-            product_id=product_id).one()
-        self.close()
-        return result.quantity
