@@ -16,6 +16,10 @@ class Keyboards:
 
     # Создает и возвращает кнопку по входным параметрам
     def set_btn(self, name, step=0, quantity=0):
+        if name == 'AMOUNT_ORDERS':
+            config.KEYBOARD['AMOUNT_ORDERS'] = '{} {} {}'.format(step + 1, ' из ', str(self.DB.count_rows_orders()))
+        if name == 'AMOUNT_PRODUCT':
+            config.KEYBOARD['AMOUNT_PRODUCT'] = '{}'.format(quantity)
         return KeyboardButton(config.KEYBOARD[name])
 
     # Создает разметку кнопок в основном меню и возвращает разметку
