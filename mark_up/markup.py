@@ -49,6 +49,7 @@ class Keyboards:
         self.markup.row(itm_btn_1)
         return self.markup
 
+    @staticmethod
     def set_inline_btn(self, name):
         '''
         Создает и возвращает инлайн кнопку (товарная позиция)
@@ -99,7 +100,7 @@ class Keyboards:
         itm_btn_5 = self.set_btn('BACK_STEP', step, quantity)
         itm_btn_6 = self.set_btn('AMOUNT_ORDERS', step, quantity)
         itm_btn_7 = self.set_btn('NEXT_STEP', step, quantity)
-        itm_btn_8 = self.set_btn('APPLAY', step, quantity)
+        itm_btn_8 = self.set_btn('APPLY', step, quantity)
         itm_btn_9 = self.set_btn('<<', step, quantity)
         self.markup.row(itm_btn_1, itm_btn_2, itm_btn_3, itm_btn_4)
         self.markup.row(itm_btn_5, itm_btn_6, itm_btn_7)
