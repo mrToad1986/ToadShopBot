@@ -1,5 +1,5 @@
 from settings.message import MESSAGES
-from settings import config
+from settings import config, utility
 from handlers.handler import Handler
 
 
@@ -160,6 +160,20 @@ class HandlerAllText(Handler):
         # отправляем ответ пользователю
         self.send_message_order(count[self.step], quantity, message)
 
+    def pressed_btn_apply(self, message):
+        '''
+        обработчик входящих текстовых сообщений
+        от нажати на кнопку 'Оформить заказ'
+        отправляет ответ пользователю и
+        очищает данные заказа
+        '''
+        self.bot.send_message(message.chat.id,
+                              MESSAGES['apply'].format(utility.get_total_cost(self.DB),
+                                                       utility.get_total_quantity(self.DB)),
+                              parse_mode='HTML',
+                              reply_markup=self.keyboards.category_menu())
+        self.DB.delete_all_orders()
+
     def handle(self):
         '''
         обработчик(декоратор) сообщений,
@@ -204,3 +218,8 @@ class HandlerAllText(Handler):
                 self.pressed_btn_back_step(message)
             if message.text == config.KEYBOARD['NEXT_STEP']:
                 self.pressed_btn_next_step(message)
+            if message.text == config.KEYBOARD['APPLY']:
+                self.pressed_btn_apply(message)
+            # другие нажатия и ввод данных пользователем
+            else:
+                self.bot.send_message(message.chat.id, message.text)
