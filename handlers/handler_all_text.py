@@ -201,7 +201,7 @@ class HandlerAllText(Handler):
                 self.pressed_btn_product(message, 'ICE_CREAM')
             if message.text == config.KEYBOARD['ORDER']:
                 # если есть заказ
-                if self.DB.count_rows_order() > 0:
+                if self.DB.count_rows_orders() > 0:
                     self.pressed_btn_order(message)
                 else:
                     self.bot.send_message(message.chat.id, MESSAGES['no_orders'],

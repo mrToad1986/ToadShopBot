@@ -29,15 +29,15 @@ class HandlerInlineQuery(Handler):
                 self.DB.select_single_product_quantity(code)),
             show_alert=True)
 
-        def handle(self):
-            '''
-            декоратор-обработчик запросов
-            от нажатия на кнопки товара
-            '''
+    def handle(self):
+        '''
+        декоратор-обработчик запросов
+        от нажатия на кнопки товара
+        '''
 
-            @self.bot.callback_query_handler(func=lambda call: True)
-            def callback_inline(call):
-                code = call.data
-                if code.isdigit():
-                    code = int(code)
-                self.pressed_btn_product(call, code)
+        @self.bot.callback_query_handler(func=lambda call: True)
+        def callback_inline(call):
+            code = call.data
+            if code.isdigit():
+                code = int(code)
+            self.pressed_btn_product(call, code)
