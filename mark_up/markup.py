@@ -50,7 +50,7 @@ class Keyboards:
         return self.markup
 
     @staticmethod
-    def set_inline_btn(self, name):
+    def set_inline_btn(name):
         '''
         Создает и возвращает инлайн кнопку (товарная позиция)
         по входным параметрам

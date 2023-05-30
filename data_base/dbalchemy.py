@@ -51,7 +51,7 @@ class DBManager(metaclass=Singleton):
     # заполнение заказа
     def _add_orders(self, quantity, product_id, user_id, ):
         # получаем список всех product_id
-        all_id_product = self.select_all_products_id()
+        all_id_product = self.select_all_product_id()
         # обновление таблиц заказа и продуктов, если данные есть в списке
         if product_id in all_id_product:
             quantity_order = self.select_order_quantity(product_id)
@@ -72,7 +72,7 @@ class DBManager(metaclass=Singleton):
         self._session.commit()
         self.close()
 
-    def select_all_products_id(self):
+    def select_all_product_id(self):
         '''
         :return: все id товара в заказе и конвертирует
         результат выбрки в список c помощью функции _convert модуля utility

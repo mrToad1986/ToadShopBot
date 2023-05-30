@@ -1,7 +1,7 @@
 import os
 from emoji import emojize
 
-NAME_DB = 'products.sqlite'
+NAME_DB = 'products.db'
 VERSION = '0.0.1'
 AUTHOR = 'mrToad86'
 # регистрационный токен

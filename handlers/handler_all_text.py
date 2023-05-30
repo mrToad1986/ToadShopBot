@@ -52,7 +52,7 @@ class HandlerAllText(Handler):
         # обнуляем шаг
         self.step = 0
         # список всех товаров в заказе
-        count = self.DB.select_all_products_id()
+        count = self.DB.select_all_product_id()
         # количество по каждой позиции товара
         quantity = self.DB.select_order_quantity(count[self.step])
         # овтет пользователю
@@ -78,7 +78,7 @@ class HandlerAllText(Handler):
         количества определенного товара в заказе
         '''
         # список всех товаров заказе
-        count = self.DB.select_all_products_id()
+        count = self.DB.select_all_product_id()
         # количество конкретной позиции в заказе
         quantity_order = self.DB.select_order_quantity(count[self.step])
         # количество конкретной позиции в запасе
@@ -113,7 +113,7 @@ class HandlerAllText(Handler):
         '''
         Обрабатывает нажатие кнопки удаления товара в заказе
         '''
-        count = self.DB.select_all_products_id()
+        count = self.DB.select_all_product_id()
         if count.__len__() > 0:
             quantity_order = self.DB.select_order_quantity(count[self.step])
             quantity_product = self.DB.select_single_product_quantity(count[self.step])
@@ -138,7 +138,7 @@ class HandlerAllText(Handler):
         if self.step > 0:
             self.step -= 1
         # получаем список всех товаров в заказе
-        count = self.DB.select_all_products_id()
+        count = self.DB.select_all_product_id()
         quantity = self.DB.select_order_quantity(count[self.step])
         # отправляем ответ пользователю
         self.send_message_order(count[self.step], quantity, message)
@@ -150,10 +150,10 @@ class HandlerAllText(Handler):
         '''
         # увеличиваем шаг пока шаг не будет равет количеству строк
         # заказа с расчетом цены деления начиная с "0"
-        if self.step < self.DB.count_rows_order() - 1:
+        if self.step < self.DB.count_rows_orders() - 1:
             self.step += 1
         # получаем список всех товаров в заказе
-        count = self.DB.select_all_products_id()
+        count = self.DB.select_all_product_id()
         # получаем количество конкретного товара
         # в соответствие с шагом выборки
         quantity = self.DB.select_order_quantity(count[self.step])
@@ -172,7 +172,7 @@ class HandlerAllText(Handler):
                                                        utility.get_total_quantity(self.DB)),
                               parse_mode='HTML',
                               reply_markup=self.keyboards.category_menu())
-        self.DB.delete_all_orders()
+        self.DB.delete_all_order()
 
     def handle(self):
         '''
