@@ -1,5 +1,5 @@
 # класс-компоновщик
-class HnadlerMain:
+class HandlerMain:
     # инициализация обработчиков
     def __init__(self, bot):
         self.bot = bot
