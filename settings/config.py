@@ -3,8 +3,7 @@ from emoji import emojize
 
 NAME_DB = 'products.sqlite'
 VERSION = '0.0.1'
-AUTHOR = 'User'
-
+AUTHOR = 'mrToad86'
 # регистрационный токен
 TOKEN = ''
 # родительская директория
@@ -28,7 +27,7 @@ KEYBOARD = {
     'NEXT_STEP': emojize('▶️'),
     'ORDER': emojize('✅ ЗАКАЗ'),
     'X': emojize('❌'),
-    'DOUWN': emojize('🔽'),
+    'DOWN': emojize('🔽'),
     'AMOUNT_PRODUCT': COUNT,
     'AMOUNT_ORDERS': COUNT,
     'UP': emojize('🔼'),
@@ -40,7 +39,7 @@ KEYBOARD = {
 CATEGORY = {
     'SEMIPRODUCT': 1,
     'GROCERY': 2,
-    'ICECREAM': 3,
+    'ICE_CREAM': 3,
 }
 
 # команды
