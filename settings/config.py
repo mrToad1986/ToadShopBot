@@ -1,16 +1,15 @@
 import os
 from emoji import emojize
 
+NAME_DB = 'products.sqlite'
+VERSION = '0.0.1'
+AUTHOR = 'mrToad86'
 # регистрационный токен
 TOKEN = ''
 # родительская директория
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # путь до БД (в директории /settings)
 DATABASE = os.path.join('sqlite:///' + BASE_DIR, NAME_DB)
-
-NAME_DB = 'products.sqlite'
-VERSION = '0.0.1'
-AUTHOR = 'User'
 
 COUNT = 0
 
@@ -28,7 +27,7 @@ KEYBOARD = {
     'NEXT_STEP': emojize('▶️'),
     'ORDER': emojize('✅ ЗАКАЗ'),
     'X': emojize('❌'),
-    'DOUWN': emojize('🔽'),
+    'DOWN': emojize('🔽'),
     'AMOUNT_PRODUCT': COUNT,
     'AMOUNT_ORDERS': COUNT,
     'UP': emojize('🔼'),
@@ -40,7 +39,7 @@ KEYBOARD = {
 CATEGORY = {
     'SEMIPRODUCT': 1,
     'GROCERY': 2,
-    'ICECREAM': 3,
+    'ICE_CREAM': 3,
 }
 
 # команды
@@ -48,4 +47,3 @@ COMMANDS = {
     'START': 'start',
     'HELP': 'help',
 }
-

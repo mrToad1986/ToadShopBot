@@ -1,7 +1,7 @@
 # реализация абстрактных классов
 import abc
 # разметка клавиатуры и клавиш
-from markup.markup import Keyboards
+from mark_up.markup import Keyboards
 # класс-менеджер для работы с библиотекой
 from data_base.dbalchemy import DBManager
 
